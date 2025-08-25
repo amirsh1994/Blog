@@ -13,7 +13,6 @@
     <Compile Remove="wwwroot\Admin\bower_components\bootstrap-slider\**" />
     <Compile Remove="wwwroot\Admin\bower_components\bootstrap-timepicker\**" />
     <Compile Remove="wwwroot\Admin\bower_components\bootstrap\**" />
-    <Compile Remove="wwwroot\Admin\bower_components\chart.js\**" />
     <Compile Remove="wwwroot\Admin\bower_components\ckeditor-english\**" />
     <Compile Remove="wwwroot\Admin\bower_components\ckeditor\**" />
     <Compile Remove="wwwroot\Admin\bower_components\datatables.net-bs\**" />
@@ -42,7 +41,6 @@
     <Content Remove="wwwroot\Admin\bower_components\bootstrap-slider\**" />
     <Content Remove="wwwroot\Admin\bower_components\bootstrap-timepicker\**" />
     <Content Remove="wwwroot\Admin\bower_components\bootstrap\**" />
-    <Content Remove="wwwroot\Admin\bower_components\chart.js\**" />
     <Content Remove="wwwroot\Admin\bower_components\ckeditor-english\**" />
     <Content Remove="wwwroot\Admin\bower_components\ckeditor\**" />
     <Content Remove="wwwroot\Admin\bower_components\datatables.net-bs\**" />
@@ -71,7 +69,6 @@
     <EmbeddedResource Remove="wwwroot\Admin\bower_components\bootstrap-slider\**" />
     <EmbeddedResource Remove="wwwroot\Admin\bower_components\bootstrap-timepicker\**" />
     <EmbeddedResource Remove="wwwroot\Admin\bower_components\bootstrap\**" />
-    <EmbeddedResource Remove="wwwroot\Admin\bower_components\chart.js\**" />
     <EmbeddedResource Remove="wwwroot\Admin\bower_components\ckeditor-english\**" />
     <EmbeddedResource Remove="wwwroot\Admin\bower_components\ckeditor\**" />
     <EmbeddedResource Remove="wwwroot\Admin\bower_components\datatables.net-bs\**" />
@@ -100,7 +97,6 @@
     <None Remove="wwwroot\Admin\bower_components\bootstrap-slider\**" />
     <None Remove="wwwroot\Admin\bower_components\bootstrap-timepicker\**" />
     <None Remove="wwwroot\Admin\bower_components\bootstrap\**" />
-    <None Remove="wwwroot\Admin\bower_components\chart.js\**" />
     <None Remove="wwwroot\Admin\bower_components\ckeditor-english\**" />
     <None Remove="wwwroot\Admin\bower_components\ckeditor\**" />
     <None Remove="wwwroot\Admin\bower_components\datatables.net-bs\**" />
@@ -126,6 +122,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="wwwroot\Admin\bower_components\chart.js\.bower.json" />
+    <Content Include="wwwroot\Admin\bower_components\chart.js\bower.json" />
+    <Content Include="wwwroot\Admin\bower_components\chart.js\package.json" />
+    <Content Include="wwwroot\Admin\bower_components\chart.js\samples\bar.html" />
+    <Content Include="wwwroot\Admin\bower_components\chart.js\samples\doughnut.html" />
+    <Content Include="wwwroot\Admin\bower_components\chart.js\samples\line-customTooltips.html" />
+    <Content Include="wwwroot\Admin\bower_components\chart.js\samples\line.html" />
+    <Content Include="wwwroot\Admin\bower_components\chart.js\samples\pie-customTooltips.html" />
+    <Content Include="wwwroot\Admin\bower_components\chart.js\samples\pie.html" />
+    <Content Include="wwwroot\Admin\bower_components\chart.js\samples\polar-area.html" />
+    <Content Include="wwwroot\Admin\bower_components\chart.js\samples\radar.html" />
     <Content Include="wwwroot\Admin\bower_components\font-awesome\.bower.json" />
     <Content Include="wwwroot\Admin\bower_components\font-awesome\bower.json" />
     <Content Include="wwwroot\Admin\bower_components\font-awesome\css\font-awesome.css" />
@@ -783,6 +790,28 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\Admin\bower_components\chart.js\.gitignore" />
+    <None Include="wwwroot\Admin\bower_components\chart.js\.travis.yml" />
+    <None Include="wwwroot\Admin\bower_components\chart.js\Chart.js" />
+    <None Include="wwwroot\Admin\bower_components\chart.js\Chart.min.js" />
+    <None Include="wwwroot\Admin\bower_components\chart.js\CONTRIBUTING.md" />
+    <None Include="wwwroot\Admin\bower_components\chart.js\docs\00-Getting-Started.md" />
+    <None Include="wwwroot\Admin\bower_components\chart.js\docs\01-Line-Chart.md" />
+    <None Include="wwwroot\Admin\bower_components\chart.js\docs\02-Bar-Chart.md" />
+    <None Include="wwwroot\Admin\bower_components\chart.js\docs\03-Radar-Chart.md" />
+    <None Include="wwwroot\Admin\bower_components\chart.js\docs\04-Polar-Area-Chart.md" />
+    <None Include="wwwroot\Admin\bower_components\chart.js\docs\05-Pie-Doughnut-Chart.md" />
+    <None Include="wwwroot\Admin\bower_components\chart.js\docs\06-Advanced.md" />
+    <None Include="wwwroot\Admin\bower_components\chart.js\docs\07-Notes.md" />
+    <None Include="wwwroot\Admin\bower_components\chart.js\gulpfile.js" />
+    <None Include="wwwroot\Admin\bower_components\chart.js\LICENSE.md" />
+    <None Include="wwwroot\Admin\bower_components\chart.js\README.md" />
+    <None Include="wwwroot\Admin\bower_components\chart.js\src\Chart.Bar.js" />
+    <None Include="wwwroot\Admin\bower_components\chart.js\src\Chart.Core.js" />
+    <None Include="wwwroot\Admin\bower_components\chart.js\src\Chart.Doughnut.js" />
+    <None Include="wwwroot\Admin\bower_components\chart.js\src\Chart.Line.js" />
+    <None Include="wwwroot\Admin\bower_components\chart.js\src\Chart.PolarArea.js" />
+    <None Include="wwwroot\Admin\bower_components\chart.js\src\Chart.Radar.js" />
     <None Include="wwwroot\Admin\bower_components\font-awesome\.gitignore" />
     <None Include="wwwroot\Admin\bower_components\font-awesome\.npmignore" />
     <None Include="wwwroot\Admin\bower_components\font-awesome\css\font-awesome.css.map" />
