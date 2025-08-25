@@ -18,7 +18,6 @@
     <Compile Remove="wwwroot\Admin\bower_components\datatables.net-bs\**" />
     <Compile Remove="wwwroot\Admin\bower_components\datatables.net\**" />
     <Compile Remove="wwwroot\Admin\bower_components\eve-raphael\**" />
-    <Compile Remove="wwwroot\Admin\bower_components\fastclick\**" />
     <Compile Remove="wwwroot\Admin\bower_components\Flot\**" />
     <Compile Remove="wwwroot\Admin\bower_components\fullcalendar\**" />
     <Compile Remove="wwwroot\Admin\bower_components\inputmask\**" />
@@ -44,7 +43,6 @@
     <Content Remove="wwwroot\Admin\bower_components\datatables.net-bs\**" />
     <Content Remove="wwwroot\Admin\bower_components\datatables.net\**" />
     <Content Remove="wwwroot\Admin\bower_components\eve-raphael\**" />
-    <Content Remove="wwwroot\Admin\bower_components\fastclick\**" />
     <Content Remove="wwwroot\Admin\bower_components\Flot\**" />
     <Content Remove="wwwroot\Admin\bower_components\fullcalendar\**" />
     <Content Remove="wwwroot\Admin\bower_components\inputmask\**" />
@@ -70,7 +68,6 @@
     <EmbeddedResource Remove="wwwroot\Admin\bower_components\datatables.net-bs\**" />
     <EmbeddedResource Remove="wwwroot\Admin\bower_components\datatables.net\**" />
     <EmbeddedResource Remove="wwwroot\Admin\bower_components\eve-raphael\**" />
-    <EmbeddedResource Remove="wwwroot\Admin\bower_components\fastclick\**" />
     <EmbeddedResource Remove="wwwroot\Admin\bower_components\Flot\**" />
     <EmbeddedResource Remove="wwwroot\Admin\bower_components\fullcalendar\**" />
     <EmbeddedResource Remove="wwwroot\Admin\bower_components\inputmask\**" />
@@ -96,7 +93,6 @@
     <None Remove="wwwroot\Admin\bower_components\datatables.net-bs\**" />
     <None Remove="wwwroot\Admin\bower_components\datatables.net\**" />
     <None Remove="wwwroot\Admin\bower_components\eve-raphael\**" />
-    <None Remove="wwwroot\Admin\bower_components\fastclick\**" />
     <None Remove="wwwroot\Admin\bower_components\Flot\**" />
     <None Remove="wwwroot\Admin\bower_components\fullcalendar\**" />
     <None Remove="wwwroot\Admin\bower_components\inputmask\**" />
@@ -125,6 +121,8 @@
     <Content Include="wwwroot\Admin\bower_components\chart.js\samples\pie.html" />
     <Content Include="wwwroot\Admin\bower_components\chart.js\samples\polar-area.html" />
     <Content Include="wwwroot\Admin\bower_components\chart.js\samples\radar.html" />
+    <Content Include="wwwroot\Admin\bower_components\fastclick\.bower.json" />
+    <Content Include="wwwroot\Admin\bower_components\fastclick\bower.json" />
     <Content Include="wwwroot\Admin\bower_components\font-awesome\.bower.json" />
     <Content Include="wwwroot\Admin\bower_components\font-awesome\bower.json" />
     <Content Include="wwwroot\Admin\bower_components\font-awesome\css\font-awesome.css" />
@@ -830,6 +828,9 @@
     <None Include="wwwroot\Admin\bower_components\chart.js\src\Chart.Line.js" />
     <None Include="wwwroot\Admin\bower_components\chart.js\src\Chart.PolarArea.js" />
     <None Include="wwwroot\Admin\bower_components\chart.js\src\Chart.Radar.js" />
+    <None Include="wwwroot\Admin\bower_components\fastclick\lib\fastclick.js" />
+    <None Include="wwwroot\Admin\bower_components\fastclick\LICENSE" />
+    <None Include="wwwroot\Admin\bower_components\fastclick\README.md" />
     <None Include="wwwroot\Admin\bower_components\font-awesome\.gitignore" />
     <None Include="wwwroot\Admin\bower_components\font-awesome\.npmignore" />
     <None Include="wwwroot\Admin\bower_components\font-awesome\css\font-awesome.css.map" />
