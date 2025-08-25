@@ -5,7 +5,7 @@ VisualStudioVersion = 17.14.36414.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Web", "Blog\Blog.Web.csproj", "{E9619620-12C9-457B-B5D3-B893D1E52AC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Bottstrap", "Blog.Bottstrap\Blog.Bottstrap.csproj", "{5BE1A5D3-7746-40FA-8763-C61271B11F1F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Bootstrap", "Blog.Bottstrap\Blog.Bootstrap.csproj", "{5BE1A5D3-7746-40FA-8763-C61271B11F1F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Core", "Blog.Core\Blog.Core.csproj", "{E4CA221E-ED1B-4546-B78B-7B9B0DA5BB99}"
 EndProject
