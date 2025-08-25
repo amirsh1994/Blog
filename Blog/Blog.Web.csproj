@@ -21,7 +21,6 @@
     <Compile Remove="wwwroot\Admin\bower_components\eve-raphael\**" />
     <Compile Remove="wwwroot\Admin\bower_components\fastclick\**" />
     <Compile Remove="wwwroot\Admin\bower_components\Flot\**" />
-    <Compile Remove="wwwroot\Admin\bower_components\font-awesome\**" />
     <Compile Remove="wwwroot\Admin\bower_components\fullcalendar\**" />
     <Compile Remove="wwwroot\Admin\bower_components\inputmask\**" />
     <Compile Remove="wwwroot\Admin\bower_components\ion.rangeSlider\**" />
@@ -51,7 +50,6 @@
     <Content Remove="wwwroot\Admin\bower_components\eve-raphael\**" />
     <Content Remove="wwwroot\Admin\bower_components\fastclick\**" />
     <Content Remove="wwwroot\Admin\bower_components\Flot\**" />
-    <Content Remove="wwwroot\Admin\bower_components\font-awesome\**" />
     <Content Remove="wwwroot\Admin\bower_components\fullcalendar\**" />
     <Content Remove="wwwroot\Admin\bower_components\inputmask\**" />
     <Content Remove="wwwroot\Admin\bower_components\ion.rangeSlider\**" />
@@ -81,7 +79,6 @@
     <EmbeddedResource Remove="wwwroot\Admin\bower_components\eve-raphael\**" />
     <EmbeddedResource Remove="wwwroot\Admin\bower_components\fastclick\**" />
     <EmbeddedResource Remove="wwwroot\Admin\bower_components\Flot\**" />
-    <EmbeddedResource Remove="wwwroot\Admin\bower_components\font-awesome\**" />
     <EmbeddedResource Remove="wwwroot\Admin\bower_components\fullcalendar\**" />
     <EmbeddedResource Remove="wwwroot\Admin\bower_components\inputmask\**" />
     <EmbeddedResource Remove="wwwroot\Admin\bower_components\ion.rangeSlider\**" />
@@ -111,7 +108,6 @@
     <None Remove="wwwroot\Admin\bower_components\eve-raphael\**" />
     <None Remove="wwwroot\Admin\bower_components\fastclick\**" />
     <None Remove="wwwroot\Admin\bower_components\Flot\**" />
-    <None Remove="wwwroot\Admin\bower_components\font-awesome\**" />
     <None Remove="wwwroot\Admin\bower_components\fullcalendar\**" />
     <None Remove="wwwroot\Admin\bower_components\inputmask\**" />
     <None Remove="wwwroot\Admin\bower_components\ion.rangeSlider\**" />
@@ -130,6 +126,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="wwwroot\Admin\bower_components\font-awesome\.bower.json" />
+    <Content Include="wwwroot\Admin\bower_components\font-awesome\bower.json" />
+    <Content Include="wwwroot\Admin\bower_components\font-awesome\css\font-awesome.css" />
+    <Content Include="wwwroot\Admin\bower_components\font-awesome\css\font-awesome.min.css" />
+    <Content Include="wwwroot\Admin\bower_components\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="wwwroot\Admin\bower_components\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="wwwroot\Admin\bower_components\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="wwwroot\Admin\bower_components\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="wwwroot\Admin\bower_components\font-awesome\HELP-US-OUT.txt" />
     <Content Include="wwwroot\Admin\bower_components\Ionicons\.bower.json" />
     <Content Include="wwwroot\Admin\bower_components\Ionicons\bower.json" />
     <Content Include="wwwroot\Admin\bower_components\Ionicons\cheatsheet.html" />
@@ -778,6 +783,39 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\Admin\bower_components\font-awesome\.gitignore" />
+    <None Include="wwwroot\Admin\bower_components\font-awesome\.npmignore" />
+    <None Include="wwwroot\Admin\bower_components\font-awesome\css\font-awesome.css.map" />
+    <None Include="wwwroot\Admin\bower_components\font-awesome\fonts\fontawesome-webfont.svg" />
+    <None Include="wwwroot\Admin\bower_components\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <None Include="wwwroot\Admin\bower_components\font-awesome\less\animated.less" />
+    <None Include="wwwroot\Admin\bower_components\font-awesome\less\bordered-pulled.less" />
+    <None Include="wwwroot\Admin\bower_components\font-awesome\less\core.less" />
+    <None Include="wwwroot\Admin\bower_components\font-awesome\less\fixed-width.less" />
+    <None Include="wwwroot\Admin\bower_components\font-awesome\less\font-awesome.less" />
+    <None Include="wwwroot\Admin\bower_components\font-awesome\less\icons.less" />
+    <None Include="wwwroot\Admin\bower_components\font-awesome\less\larger.less" />
+    <None Include="wwwroot\Admin\bower_components\font-awesome\less\list.less" />
+    <None Include="wwwroot\Admin\bower_components\font-awesome\less\mixins.less" />
+    <None Include="wwwroot\Admin\bower_components\font-awesome\less\path.less" />
+    <None Include="wwwroot\Admin\bower_components\font-awesome\less\rotated-flipped.less" />
+    <None Include="wwwroot\Admin\bower_components\font-awesome\less\screen-reader.less" />
+    <None Include="wwwroot\Admin\bower_components\font-awesome\less\stacked.less" />
+    <None Include="wwwroot\Admin\bower_components\font-awesome\less\variables.less" />
+    <None Include="wwwroot\Admin\bower_components\font-awesome\scss\font-awesome.scss" />
+    <None Include="wwwroot\Admin\bower_components\font-awesome\scss\_animated.scss" />
+    <None Include="wwwroot\Admin\bower_components\font-awesome\scss\_bordered-pulled.scss" />
+    <None Include="wwwroot\Admin\bower_components\font-awesome\scss\_core.scss" />
+    <None Include="wwwroot\Admin\bower_components\font-awesome\scss\_fixed-width.scss" />
+    <None Include="wwwroot\Admin\bower_components\font-awesome\scss\_icons.scss" />
+    <None Include="wwwroot\Admin\bower_components\font-awesome\scss\_larger.scss" />
+    <None Include="wwwroot\Admin\bower_components\font-awesome\scss\_list.scss" />
+    <None Include="wwwroot\Admin\bower_components\font-awesome\scss\_mixins.scss" />
+    <None Include="wwwroot\Admin\bower_components\font-awesome\scss\_path.scss" />
+    <None Include="wwwroot\Admin\bower_components\font-awesome\scss\_rotated-flipped.scss" />
+    <None Include="wwwroot\Admin\bower_components\font-awesome\scss\_screen-reader.scss" />
+    <None Include="wwwroot\Admin\bower_components\font-awesome\scss\_stacked.scss" />
+    <None Include="wwwroot\Admin\bower_components\font-awesome\scss\_variables.scss" />
     <None Include="wwwroot\Admin\bower_components\Ionicons\fonts\ionicons.svg" />
     <None Include="wwwroot\Admin\bower_components\Ionicons\less\ionicons.less" />
     <None Include="wwwroot\Admin\bower_components\Ionicons\less\_ionicons-font.less" />
