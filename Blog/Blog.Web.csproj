@@ -1693,6 +1693,9 @@
     <None Include="wwwroot\Admin\dist\css\.DS_Store" />
     <None Include="wwwroot\Admin\dist\img\.DS_Store" />
     <None Include="wwwroot\Admin\dist\js\.DS_Store" />
+    <None Include="wwwroot\Admin\plugins\.DS_Store" />
+    <None Include="wwwroot\Admin\plugins\iCheck\.DS_Store" />
+    <None Include="wwwroot\Admin\plugins\input-mask\.DS_Store" />
   </ItemGroup>
 
   <ItemGroup>
