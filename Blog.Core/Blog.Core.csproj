@@ -7,10 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Common\" />
-    <Folder Include="ViewModels\" />
-    <Folder Include="Utils\" />
-    <Folder Include="Services\" />
+    <Folder Include="Services\CategoryServices\Command\" />
+    <Folder Include="Services\CategoryServices\Query\" />
+    <Folder Include="Services\CommentServices\Command\" />
+    <Folder Include="Services\CommentServices\Query\" />
+    <Folder Include="Services\FileServices\" />
+    <Folder Include="Services\PostServices\Command\" />
+    <Folder Include="Services\PostServices\Query\" />
+    <Folder Include="ViewModels\Comments\" />
+    <Folder Include="ViewModels\Categories\" />
+    <Folder Include="ViewModels\Posts\" />
   </ItemGroup>
 
   <ItemGroup>
