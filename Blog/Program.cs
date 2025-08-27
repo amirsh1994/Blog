@@ -1,14 +1,20 @@
 using Blog.Bootstrap;
+using Blog.Web.FileServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+#region Add services to the container.
+
 builder.Services.AddControllersWithViews();
 builder.Services.InitDependency(builder.Configuration.GetConnectionString("BlogTutorial") ?? "");
+builder.Services.AddScoped<IFileService, FileService>();
+
+#endregion
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+#region Configure the HTTP request pipeline.
+
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -27,8 +33,9 @@ app.MapControllerRoute(
     .WithStaticAssets();
 
 app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}")
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
+#endregion
 
 app.Run();

@@ -12,7 +12,5 @@ public static class BlogBootstrapper
         services.AddDbContext<BlogContext>(op =>op.UseSqlServer(connectionString),contextLifetime: ServiceLifetime.Scoped);
         #endregion
 
-
-
     }
 }
