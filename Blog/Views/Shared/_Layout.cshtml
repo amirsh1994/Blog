@@ -13,7 +13,6 @@
     @await RenderSectionAsync("css", false)
     <partial name="_favIconPartial" />
     <script src="/BlogTheme/js/lazysizes.min.js"></script>
-
 </head>
 
 <body class="bg-light style-default style-rounded">
@@ -23,10 +22,7 @@
             <div></div>
         </div>
     </div>
-
     <div class="content-overlay"></div>
-
-
     <partial name="_sidenavPartial" />
 
 
@@ -36,14 +32,11 @@
         <partial name="_headerPartial" />
         @RenderBody()
         <partial name="_footerPartial" />
-
         <div id="back-to-top">
             <a href="#top" aria-label="Go to top"><i class="ui-arrow-up"></i></a>
         </div>
-
     </main>
     <partial name="_jsPartial" />
     @await RenderSectionAsync("script", false)
 </body>
-
 </html>
