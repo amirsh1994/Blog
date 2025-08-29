@@ -8,6 +8,7 @@ public class OperationMessage
     public static string Delete = "با موفقیت حذف شد";
     public static string Failed = "خطا در انجام عملیات";
     public static string Duplicated = "ثبت مقدار تکراری";
+    public static string DuplicatedUserName = "نام کاربری تکراری هست";
     public static string NotFound = "مقداری یافت نشد";
     public static string NotFoundQuestion = "پرسشی یافت نشد";
     public static string NotFoundUser = "کاربری با این مشخصات یافت نشد";
@@ -21,11 +22,8 @@ public class OperationMessage
     public static string ChangePassword = "پسورد شما با موفقیت تغییر کرد";
     public static string AddProductForCart = "محصول با موفقیت به سبد شما اضافه گردید";
     public static string RedirectToNovinoPay = "درحال انتقال به درگاه نوینو پی";
-    public static string VerificationToNovinoPay = "سفارش شما با موفقیت ثبت شد";
-    public static string NotVerificationToNovinoPay = "خطا در ثبت سفارش";
     public static string AccessDenied = "مجاز به دیدن این صفحه نیستید";
     public static string Access = "مجاز به دیدن این صفحه هستید";
-    public static string UpdateCart = "سبد خرید به روز رسانی شد";
     public static string NotFoundAddress = "آدرسی یافت نشد";
     public static string AddComment = "نطرشما با موفقیط ثبت شد";
     public static string AddQuestion = "سوال با موفقیت ثبت شد";

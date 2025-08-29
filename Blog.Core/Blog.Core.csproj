@@ -13,9 +13,10 @@
     <Folder Include="Services\CommentServices\Query\" />
     <Folder Include="Services\PostServices\Command\" />
     <Folder Include="Services\PostServices\Query\" />
-    <Folder Include="ViewModels\Comments\" />
-    <Folder Include="ViewModels\Categories\" />
-    <Folder Include="ViewModels\Posts\" />
+    <Folder Include="DTOs\Comments\" />
+    <Folder Include="DTOs\Categories\" />
+    <Folder Include="DTOs\Posts\" />
+    <Folder Include="DTOs\Users\Queries\" />
   </ItemGroup>
 
   <ItemGroup>
