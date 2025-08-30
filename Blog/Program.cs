@@ -1,13 +1,23 @@
 using Blog.Bootstrap;
 using Blog.Web.FileServices;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
-#region Add services to the container.
 
+#region Add services to the container.
+const string cookieName = "Blog";
 builder.Services.AddControllersWithViews();
 builder.Services.InitDependency(builder.Configuration.GetConnectionString("BlogTutorial") ?? "");
 builder.Services.AddScoped<IFileService, FileService>();
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(o =>
+{
+    o.Cookie.Name=cookieName;
+    o.LoginPath = new PathString("/Login");
+    o.AccessDeniedPath = new PathString("/Login");
+    o.LogoutPath = new PathString("/LogOut");
+});
+builder.Services.AddHttpContextAccessor();
 
 #endregion
 
@@ -24,6 +34,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseRouting();
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapStaticAssets();
 

@@ -1,4 +1,5 @@
 ﻿@using Blog.Core.Utils
+@model Blog.Web.Models.Users.LoginViewModel
 
 @{
     Layout = null;
@@ -12,26 +13,29 @@
 <head>
     <meta charset="utf-8">
     <title>@ViewData["Title"]</title>
-    <partial name="_cssPartial"/>
+    <partial name="_cssPartial" />
     <link rel="stylesheet" type="text/css" href="/Auth/css/main.css" />
 </head>
 
 <body>
     <div class="container">
         <section id="content">
-            <form action="">
+            <form asp-controller="Account" asp-action="Login" method="post">
                 <h1>ورود به سایت</h1>
+                <input type="hidden" asp-for="ReturnUrl" />
                 <div>
-                    @if (TempData[TempDataName.ResultTempData]!=null)
+                    @if (TempData[TempDataName.ResultTempData] != null)
                     {
                         @await Component.InvokeAsync("ResultViewComponent")
                     }
                 </div>
                 <div>
-                    <input type="text" placeholder="نام کاربری" required="" id="username" />
+                    <input type="text" asp-for="UserName" placeholder="نام کاربری" required="" id="username" />
+                    <span asp-validation-for="UserName" style="color: red"></span>
                 </div>
                 <div>
-                    <input type="password" placeholder="کلمه عبور" required="" id="password" />
+                    <input type="password" asp-for="Password" placeholder="کلمه عبور" required="" id="password" />
+                    <span asp-validation-for="Password" style="color: red"></span>
                 </div>
                 <div>
                     <input type="submit" value="ورود" class="submit" />

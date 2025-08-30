@@ -12,9 +12,36 @@ public class AccountController(IUserServiceCommand userServiceCommand) : BaseCon
     #region login
     [HttpGet]
     [Route("Login")]
-    public IActionResult Login()
+    public IActionResult Login(string? returnUrl = "")
     {
-        return View();
+        var loginViewModel = new LoginViewModel()
+        {
+            ReturnUrl = returnUrl
+        };
+        return View(loginViewModel);
+    }
+
+    [HttpPost]
+    [Route("Login")]
+    public async Task<IActionResult> Login(LoginViewModel vm)
+    {
+        if (ModelState.IsValid == false)
+        {
+            return View();
+        }
+        var loginDto = new LoginDto
+        {
+            UserName = vm.UserName,
+            Password = vm.Password,
+            ReturnUrl = vm.ReturnUrl
+        };
+        var result = await userServiceCommand.Login(loginDto);
+        TempData[TempDataName.ResultTempData] = JsonConvert.SerializeObject(result);
+        if (!string.IsNullOrWhiteSpace(vm.ReturnUrl)&&Url.IsLocalUrl(vm.ReturnUrl))
+        {
+            Redirect(vm.ReturnUrl);
+        }
+        return View(vm);
     }
     #endregion
 
@@ -45,9 +72,9 @@ public class AccountController(IUserServiceCommand userServiceCommand) : BaseCon
 
         var result = await userServiceCommand.RegisterUser(userDto);
 
-        if (result.IsSuccess==false)
+        if (result.IsSuccess == false)
         {
-            ModelState.AddModelError("UserName",result.Message);
+            ModelState.AddModelError("UserName", result.Message);
             return View(vm);
         }
 

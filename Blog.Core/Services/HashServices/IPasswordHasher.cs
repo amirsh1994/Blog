@@ -46,7 +46,7 @@ public class PasswordHasher(IOptions<HashOption> hashOptions) : IPasswordHasher
 
         var valueTuple = await Task.Run(() =>
            {
-               using var algorithm = new Rfc2898DeriveBytes(password, salt, iterationCount, HashAlgorithmName.SHA256);
+               using var algorithm = new Rfc2898DeriveBytes(password, salt, iterationCount, HashAlgorithmName.SHA512);
                var hashToCheck = algorithm.GetBytes(KeySize);
                bool verified = hashToCheck.SequenceEqual(key);
                return (verified, needsUpgrade);
