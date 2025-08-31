@@ -1,4 +1,6 @@
 ﻿using Blog.Core.Services.HashServices;
+using Blog.Core.Services.RoleService.Commands;
+using Blog.Core.Services.RoleService.Queries;
 using Blog.Core.Services.UserServices.Command;
 using Blog.Core.Services.UserServices.Query;
 using Blog.DataBase.Context;
@@ -24,6 +26,11 @@ public static class BlogBootstrapper
 
         #region Hash
         services.AddScoped<IPasswordHasher, PasswordHasher>();
+        #endregion
+
+        #region Role
+        services.AddScoped<IRoleServiceQuery, RoleServiceQuery>();
+        services.AddScoped<IRoleServiceCommand, RoleServiceCommand>();
         #endregion
     }
 }

@@ -13,12 +13,15 @@
 
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
-
         <partial name="_headerPartial" />
         <partial name="_mainSideBar" />
-        @RenderBody()
+        <div class="content-wrapper" style="min-height: 916.281px;">
+           
+            <section class="content">
+                @RenderBody()
+            </section>
+        </div>
         <partial name="_footerPartial" />
-
         <aside class="control-sidebar control-sidebar-dark">
             <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
                 <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>

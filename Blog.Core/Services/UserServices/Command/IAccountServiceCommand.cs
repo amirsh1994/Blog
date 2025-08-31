@@ -109,7 +109,6 @@ public class UserServiceCommand(BlogContext db,IUserServiceQuery userServiceQuer
             IsPersistent =true,
             ExpiresUtc = DateTimeOffset.UtcNow.AddDays(1),
             AllowRefresh = true,
-            RedirectUri = "/"
         };
 
         await accessor.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);

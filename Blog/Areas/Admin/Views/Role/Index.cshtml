@@ -1,0 +1,60 @@
+﻿@using Blog.Core.Utils
+@model IEnumerable<Blog.Core.DTOs.Roles.Queries.GetRoleDto>
+<section class="content-header">
+    <h1>
+        صفحه خالی
+        <small></small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/Admin/Dashboard/Index"><i class="fa fa-dashboard"></i> خانه</a></li>
+        <li><a href="/Admin/Role/Index">نقش ها</a></li>
+        <li class="active">صفحه خالی</li>
+    </ol>
+</section>
+
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">لیست نقش ها</h3>
+    </div>
+    
+    <div class="box-body">
+        <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+            <div class="row">
+                <div class="col-sm-6 mb-1">
+                    <a href="/Admin/Role/Create" class="btn btn-primary">افزودن نقش جدید</a>
+                </div>
+                <div class="col-sm-12">
+                    @if (TempData[TempDataName.ResultTempData]!=null)
+                    {
+                        @await Component.InvokeAsync("ResultViewComponent")
+                    }
+                </div>
+            </div><div class="row">
+                <div class="col-sm-12">
+                    <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
+                        <thead>
+                        <tr role="row">
+                            <th>شناسه</th>
+                            <th>نام نقش</th>
+                            <th>عملیات</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                       @foreach (var item in Model)
+                       {
+                           <tr role="row" class="odd">
+                               <td>@item.RoleId</td>
+                               <td>@item.RoleName</td>
+                               <td>
+                                   <a class="btn btn-info" href="/Admin/Brand/Update/@item.RoleId">ویرایش</a>
+                                   <a class="btn btn-danger" href="/Admin/Brand/Remove/@item.RoleId">حذف</a>
+                               </td>
+                           </tr>
+                       }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

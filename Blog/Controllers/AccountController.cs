@@ -14,11 +14,12 @@ public class AccountController(IUserServiceCommand userServiceCommand) : BaseCon
     [Route("Login")]
     public IActionResult Login(string? returnUrl = "")
     {
-        var loginViewModel = new LoginViewModel()
+        var vm = new LoginViewModel
         {
             ReturnUrl = returnUrl
         };
-        return View(loginViewModel);
+
+        return View(vm);
     }
 
     [HttpPost]
@@ -37,10 +38,15 @@ public class AccountController(IUserServiceCommand userServiceCommand) : BaseCon
         };
         var result = await userServiceCommand.Login(loginDto);
         TempData[TempDataName.ResultTempData] = JsonConvert.SerializeObject(result);
-        if (!string.IsNullOrWhiteSpace(vm.ReturnUrl)&&Url.IsLocalUrl(vm.ReturnUrl))
+        if (result.IsSuccess)
         {
-            Redirect(vm.ReturnUrl);
+            if (!string.IsNullOrWhiteSpace(vm.ReturnUrl) && Url.IsLocalUrl(vm.ReturnUrl))
+            {
+                return Redirect(vm.ReturnUrl);
+            }
+            return RedirectToAction("Index", "Home");
         }
+        ModelState.AddModelError("","نام کاربری یا رمز عبور اشتباه می باشد");
         return View(vm);
     }
     #endregion
