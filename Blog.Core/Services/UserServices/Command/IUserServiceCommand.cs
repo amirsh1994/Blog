@@ -9,6 +9,7 @@ using Blog.DataBase.Entities;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 
 namespace Blog.Core.Services.UserServices.Command;
 
@@ -19,9 +20,11 @@ public interface IUserServiceCommand
     Task<OperationResult> LogOut();
 
     Task<OperationResult> Login(LoginDto loginDto);
+
+    Task<OperationResult> UpdateUser(UpdateUserDto update);
 }
 
-public class UserServiceCommand(BlogContext db,IUserServiceQuery userServiceQuery,IPasswordHasher passwordHasher,IHttpContextAccessor accessor):IUserServiceCommand
+public class UserServiceCommand(BlogContext db, IUserServiceQuery userServiceQuery, IPasswordHasher passwordHasher, IHttpContextAccessor accessor) : IUserServiceCommand
 {
     #region Register
     public async Task<OperationResult> RegisterUser(RegisterUserDto register)
@@ -86,7 +89,7 @@ public class UserServiceCommand(BlogContext db,IUserServiceQuery userServiceQuer
                 Code = OperationCode.Failed
             };
         }
-        var (verified,needsUpgrade)=await passwordHasher.CheckAsync(findUser.Password, loginDto.Password);
+        var (verified, needsUpgrade) = await passwordHasher.CheckAsync(findUser.Password, loginDto.Password);
 
         if (verified is false)
         {
@@ -106,7 +109,7 @@ public class UserServiceCommand(BlogContext db,IUserServiceQuery userServiceQuer
 
         var authProperties = new AuthenticationProperties
         {
-            IsPersistent =true,
+            IsPersistent = true,
             ExpiresUtc = DateTimeOffset.UtcNow.AddDays(1),
             AllowRefresh = true,
         };
@@ -119,6 +122,40 @@ public class UserServiceCommand(BlogContext db,IUserServiceQuery userServiceQuer
             Message = OperationMessage.LoginSuccess,
             Code = OperationCode.Success
         };
+    }
+    #endregion
+
+    #region Update
+
+    public async Task<OperationResult> UpdateUser(UpdateUserDto update)
+    {
+        var findUser = await db.Users
+            .Include(x => x.UserRoles)
+            .FirstOrDefaultAsync(x => x.Id == update.UserId);
+
+        if (findUser is null)
+        {
+            return new OperationResult
+            {
+                IsSuccess = false,
+                Message = OperationMessage.NotFoundUser,
+                Code = OperationCode.NotFound
+            };
+        }
+
+        findUser.UserName = update.UserName;
+        findUser.FullName = update.FullName;
+        findUser.LastModified = DateTime.Now;
+        findUser.SyncUserRole(update.RolIds,db);
+        await db.SaveChangesAsync();
+
+        return new OperationResult
+        {
+            IsSuccess = true,
+            Message = OperationMessage.Update,
+            Code = OperationCode.Success
+        };
+
     }
 
     #endregion

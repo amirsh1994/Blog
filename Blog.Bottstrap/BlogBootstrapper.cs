@@ -1,6 +1,9 @@
 ﻿using Blog.Core.Services.HashServices;
+using Blog.Core.Services.PermissionServices.Query;
 using Blog.Core.Services.RoleService.Commands;
 using Blog.Core.Services.RoleService.Queries;
+using Blog.Core.Services.UserRoleServices.Command;
+using Blog.Core.Services.UserRoleServices.Query;
 using Blog.Core.Services.UserServices.Command;
 using Blog.Core.Services.UserServices.Query;
 using Blog.DataBase.Context;
@@ -24,6 +27,11 @@ public static class BlogBootstrapper
 
         #endregion
 
+        #region User_Role
+        services.AddScoped<IUserRoleServiceCommand, UserRoleServiceCommand>();
+        services.AddScoped<IUserRoleServiceQuery, UserRoleServiceQuery>();
+        #endregion
+
         #region Hash
         services.AddScoped<IPasswordHasher, PasswordHasher>();
         #endregion
@@ -31,6 +39,10 @@ public static class BlogBootstrapper
         #region Role
         services.AddScoped<IRoleServiceQuery, RoleServiceQuery>();
         services.AddScoped<IRoleServiceCommand, RoleServiceCommand>();
+        #endregion
+
+        #region permission
+        services.AddScoped<IPermissionServiceQuery, PermissionServiceQuery>();
         #endregion
     }
 }

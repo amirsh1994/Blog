@@ -12,6 +12,10 @@ public interface IUserServiceQuery
 {
     Task<bool> ExistsUserName(string userName, int userId);
 
+    Task<List<GetUserDto>> GetAll();
+
+    Task<GetUserDto?> GetUserByUserIdAsync(int userId);
+
     Task<User?> GetUserByUserName(string userName);
 
     GetCurrentUserDto GetCurrentUser();
@@ -25,6 +29,20 @@ public class UserServiceQuery(BlogContext db, IHttpContextAccessor contextAccess
             .AsNoTracking()
             .AnyAsync(x => x.UserName.Trim().ToLower() == userName && x.Id != userId);
         return exists;
+    }
+
+    public async Task<GetUserDto?> GetUserByUserIdAsync(int userId)
+    {
+        var getUser = await db.Users.AsNoTracking()
+            .Where(x => x.Id == userId)
+            .Select(x => new GetUserDto
+            {
+                UserId = x.Id,
+                UserName = x.UserName,
+                FullName = x.FullName,
+                UserImage = x.UserImage
+            }).FirstOrDefaultAsync();
+        return getUser;
     }
 
     public async Task<User?> GetUserByUserName(string userName)
@@ -54,5 +72,18 @@ public class UserServiceQuery(BlogContext db, IHttpContextAccessor contextAccess
             UserId = userId,
             UserName = userName ?? ""
         };
+    }
+
+    public async Task<List<GetUserDto>> GetAll()
+    {
+        var users = await db.Users.AsNoTracking()
+            .Select(x => new GetUserDto
+            {
+                UserId = x.Id,
+                UserName = x.UserName,
+                FullName = x.FullName,
+                UserImage = x.UserImage
+            }).ToListAsync();
+        return users;
     }
 }

@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="DTOs\Permissions\Command\" />
     <Folder Include="Services\CategoryServices\Command\" />
     <Folder Include="Services\CategoryServices\Query\" />
     <Folder Include="Services\CommentServices\Command\" />

@@ -3,4 +3,6 @@
 public class CreateRoleDto
 {
     public string RolName { get; set; } = "";
+
+    public List<int> PermissionIds { get; set; } = [];
 }

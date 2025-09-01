@@ -1,0 +1,88 @@
+﻿@using Blog.Core.DTOs.Roles.Queries
+@model Blog.Web.Areas.Admin.Models.Roles.AddRoleToSelectedUserViewModel
+
+@{
+    var roleDto = ViewBag.Roles as List<GetRoleDto>;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">افزودن نقش به کاربر انتخاب شده</h3>
+            </div>
+            <form asp-controller="Role" asp-action="AddRoleToSelectedUser" method="post">
+                <div class="box-body">
+                  
+                    <input type="hidden" asp-for="UserId"/>
+                    <div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <button type="button" class="btn btn-success col-lg-6  add-parent" data-name="RoleIds">
+                                    انتخاب مجوز دسترسی
+                                </button>
+
+                            </div>
+                            <select class="form-control col-lg-8" id="ParentList">
+                                @foreach (var item in roleDto ?? [])
+                                {
+                                    <option value="@item.RoleId">@item.RoleName</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="ParentListSelected">
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">ارسال</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section script
+{
+    <script>
+        $(document).on("click",
+            ".add-parent",
+            function() {
+
+                const dataName = $(this).attr("data-name");
+                var $select = $("#ParentList");
+                var permissionId = $select.val();
+                var permissionName = $select.find("option:selected").text();
+
+                if (permissionId) {
+                    $(".ParentListSelected").append(`
+
+              <div class="item-Parent" >
+                  <button type="button" class="btn-remove item-btn-remove">×</button>
+                  <input type="hidden" name="${dataName}" value="${permissionId}" />
+                  <span>${permissionName}</span>
+              </div>
+              `);
+
+                    $select.find("option:selected").remove();
+                }else{
+                    alert('یک گزینه رو انتخاب نمایید');
+                }
+
+            });
+
+        $(".ParentListSelected").on("click", ".btn-remove", function () {
+            let $item = $(this).closest(".item-Parent");
+            let text = $item.find("span").text();
+            let value = $item.find("input[type=hidden]").val();
+
+            // برگرداندن به لیست select
+            $("#ParentList").append(new Option(text, value));
+
+            // حذف از لیست انتخاب‌شده
+            $item.remove();
+        });
+    </script>
+}

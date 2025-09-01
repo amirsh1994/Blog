@@ -1,0 +1,65 @@
+﻿@using Blog.Core.Utils
+@model IEnumerable<Blog.Core.DTOs.Users.Queries.GetUserDto>
+
+
+<section class="content-header">
+    <h1>
+        صفحه خالی
+        <small></small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/Admin/Dashboard/Index"><i class="fa fa-dashboard"></i> خانه</a></li>
+        <li><a href="/Admin/Role/Index">نقش ها</a></li>
+        <li class="active">صفحه خالی</li>
+    </ol>
+</section>
+
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">لیست کاربران سایت</h3>
+    </div>
+
+    <div class="box-body">
+        <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+            <div class="row">
+                <div class="col-sm-6 mb-1">
+                </div>
+                <div class="col-sm-12">
+                    @if (TempData[TempDataName.ResultTempData] != null)
+                    {
+                        @await Component.InvokeAsync("ResultViewComponent")
+                    }
+                </div>
+            </div><div class="row">
+                <div class="col-sm-12">
+                    <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
+                        <thead>
+                        <tr role="row">
+                            <th>شناسه</th>
+                            <th>نام کاربری</th>
+                            <th>نام و نام خانوادگی</th>
+                            <th>عکس کاربر</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr role="row" class="odd">
+                                <td>@item.UserId</td>
+                                <td>@item.UserName</td>
+                                <td>@item.FullName</td>
+                                <td>@item.UserImage</td>
+                                <td>
+                                    <a class="btn btn-info" href="/Admin/User/Update/@item.UserId">ویرایش</a>
+                                    <a class="btn btn-danger" href="/Admin/User/Remove/@item.UserId">حذف</a>
+                                    <a class="btn btn-success" href="/AddRoleToSelectedUser/@item.UserId">افزودن نقش به کاربر</a>
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

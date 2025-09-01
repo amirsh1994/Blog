@@ -10,6 +10,10 @@ public interface IRoleServiceQuery
     Task<List<GetRoleDto>> GetRoles();
 
     Task<bool> ExistRoleName(string roleName, int roleId);
+
+    Task<List<int>> FindRolesForUser(int userId);
+
+    Task<List<int>> FindRolesByPermissionId(int permissionId);
 }
 
 public class RoleServiceQuery(BlogContext db) : IRoleServiceQuery
@@ -29,5 +33,21 @@ public class RoleServiceQuery(BlogContext db) : IRoleServiceQuery
     {
         var exists = await db.Roles.AnyAsync(x => x.Title == roleName.Trim().ToLower() && x.Id != roleId);
         return exists;
+    }
+
+    public async Task<List<int>> FindRolesForUser(int userId)
+    {
+        var roleIds = await db.UserRoles.AsNoTracking()
+            .Where(x => x.UserId == userId)
+            .Select(x => x.RoleId).ToListAsync();
+        return roleIds;
+    }
+
+    public async Task<List<int>> FindRolesByPermissionId(int permissionId)
+    {
+        var rolIds = await db.RolePermissions.AsNoTracking()
+            .Where(x => x.PermissionId == permissionId)
+            .Select(x => x.RoleId).ToListAsync();
+        return rolIds;
     }
 }

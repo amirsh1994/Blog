@@ -1,0 +1,40 @@
+﻿
+<script>
+    $(document).on("click",
+        ".add-parent",
+        function() {
+
+            const dataName = $(this).attr("data-name");
+            var $select = $("#ParentList");
+            var value = $select.val();
+            var name = $select.find("option:selected").text();
+
+            if (value) {
+                $(".ParentListSelected").append(`
+
+                  <div class="item-Parent" >
+                      <button type="button" class="btn-remove item-btn-remove">×</button>
+                      <input type="hidden" name="${dataName}" value="${value}" />
+                      <span>${name}</span>
+                  </div>
+                  `);
+
+                $select.find("option:selected").remove();
+            }else{
+                alert('یک گزینه رو انتخاب نمایید');
+            }
+
+        });
+
+    $(".ParentListSelected").on("click", ".btn-remove", function () {
+        let $item = $(this).closest(".item-Parent");
+        let text = $item.find("span").text();
+        let value = $item.find("input[type=hidden]").val();
+
+        // برگرداندن به لیست select
+        $("#ParentList").append(new Option(text, value));
+
+        // حذف از لیست انتخاب‌شده
+        $item.remove();
+    });
+</script>

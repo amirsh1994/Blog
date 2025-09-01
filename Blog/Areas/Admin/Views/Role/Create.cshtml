@@ -1,4 +1,9 @@
-﻿@model Blog.Web.Areas.Admin.Models.Roles.CreateRoleViewModel
+﻿@using Blog.Core.DTOs.Permissions.Query
+@model Blog.Web.Areas.Admin.Models.Roles.CreateRoleViewModel
+
+@{
+    var permissions = ViewBag.PermissionList as List<GetPermissionDto>;
+}
 
 <div class="row">
     <div class="col-md-12">
@@ -9,22 +14,45 @@
             <form asp-controller="Role" asp-action="Create" method="post">
                 <div class="box-body">
                     <div class="form-group">
-                        <label >نام نقش</label>
+                        <label>نام نقش</label>
                         <input type="text" class="form-control" asp-for="RoleName" placeholder="نام نقش">
                         <span asp-validation-for="RoleName" class="text-danger"></span>
                     </div>
-                    
-                    @*<div class="form-group">
-                        <label for="exampleInputFile">ارسال فایل</label>
-                        <input type="file" id="exampleInputFile">
 
-                        <p class="help-block">متن راهنما</p>
+                    <div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <button type="button" class="btn btn-success col-lg-6  add-parent" data-name="PermissionIds">
+                                    انتخاب مجوز دسترسی
+                                </button>
+
+                            </div>
+                            <select class="form-control col-lg-8" id="ParentList">
+                                @foreach (var item in permissions ?? [])
+                                {
+                                    <option value="@item.PermissionId">@item.PermissionName</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="ParentListSelected">
+
+
+
+                        </div>
                     </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"> مرا به خاطر بسپار
-                        </label>
-                    </div>*@
+
+                    @*<div class="form-group">
+                            <label for="exampleInputFile">ارسال فایل</label>
+                            <input type="file" id="exampleInputFile">
+
+                            <p class="help-block">متن راهنما</p>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"> مرا به خاطر بسپار
+                            </label>
+                        </div>*@
                 </div>
                 <div class="box-footer">
                     <button type="submit" class="btn btn-primary">ارسال</button>
@@ -33,3 +61,7 @@
         </div>
     </div>
 </div>
+@section script
+{
+   <partial name="_multiSelectJsPartial"/>
+}
