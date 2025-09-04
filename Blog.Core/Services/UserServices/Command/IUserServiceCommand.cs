@@ -2,6 +2,7 @@
 using Blog.Core.Common;
 using Blog.Core.DTOs.Users.Commands;
 using Blog.Core.Services.HashServices;
+using Blog.Core.Services.UserRoleServices.Query;
 using Blog.Core.Services.UserServices.Query;
 using Blog.Core.Utils;
 using Blog.DataBase.Context;
@@ -22,9 +23,16 @@ public interface IUserServiceCommand
     Task<OperationResult> Login(LoginDto loginDto);
 
     Task<OperationResult> UpdateUser(UpdateUserDto update);
+
+    Task<OperationResult> RemoveUser(int userId);
 }
 
-public class UserServiceCommand(BlogContext db, IUserServiceQuery userServiceQuery, IPasswordHasher passwordHasher, IHttpContextAccessor accessor) : IUserServiceCommand
+public class UserServiceCommand(
+    BlogContext db
+    , IUserServiceQuery userServiceQuery
+    , IPasswordHasher passwordHasher
+    , IHttpContextAccessor accessor
+    , IUserRoleServiceQuery userRoleServiceQuery) : IUserServiceCommand
 {
     #region Register
     public async Task<OperationResult> RegisterUser(RegisterUserDto register)
@@ -126,7 +134,6 @@ public class UserServiceCommand(BlogContext db, IUserServiceQuery userServiceQue
     #endregion
 
     #region Update
-
     public async Task<OperationResult> UpdateUser(UpdateUserDto update)
     {
         var findUser = await db.Users
@@ -146,13 +153,39 @@ public class UserServiceCommand(BlogContext db, IUserServiceQuery userServiceQue
         findUser.UserName = update.UserName;
         findUser.FullName = update.FullName;
         findUser.LastModified = DateTime.Now;
-        findUser.SyncUserRole(update.RolIds,db);
+        findUser.SyncUserRole(update.RolIds, db);
         await db.SaveChangesAsync();
 
         return new OperationResult
         {
             IsSuccess = true,
             Message = OperationMessage.Update,
+            Code = OperationCode.Success
+        };
+
+    }
+    #endregion
+
+    #region Remove
+
+    public async Task<OperationResult> RemoveUser(int userId)
+    {
+        var findUser = await db.Users.FirstOrDefaultAsync(x => x.Id == userId);
+        if (findUser is null)
+        {
+            return new OperationResult
+            {
+                IsSuccess = false,
+                Message = OperationMessage.NotFoundUser,
+                Code = OperationCode.Failed
+            };
+        }
+        findUser.IsDeleted = true;
+        await db.SaveChangesAsync();
+        return new OperationResult
+        {
+            IsSuccess = true,
+            Message = OperationMessage.Delete,
             Code = OperationCode.Success
         };
 

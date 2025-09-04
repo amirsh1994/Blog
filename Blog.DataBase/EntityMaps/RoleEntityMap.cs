@@ -24,5 +24,7 @@ public class RoleEntityMap:IEntityTypeConfiguration<Role>
             .WithOne(x=>x.Role)
             .HasForeignKey(x=>x.RoleId)
             .OnDelete(DeleteBehavior.Restrict);
+
+        builder.HasQueryFilter(x => x.IsDeleted == false);
     }
 }

@@ -7,10 +7,12 @@ namespace Blog.Core.Services.PermissionServices.Query;
 public interface IPermissionServiceQuery
 {
     Task<List<GetPermissionDto>> GetPermissions();
+
+    Task<List<int>> GetPermissionIdsForSelectedRole(int roleId);
 }
 
 
-public class PermissionServiceQuery(BlogContext db):IPermissionServiceQuery
+public class PermissionServiceQuery(BlogContext db) : IPermissionServiceQuery
 {
     public async Task<List<GetPermissionDto>> GetPermissions()
     {
@@ -21,5 +23,13 @@ public class PermissionServiceQuery(BlogContext db):IPermissionServiceQuery
                 PermissionName = x.PermissionName
             }).ToListAsync();
         return permissions;
+    }
+
+    public async Task<List<int>> GetPermissionIdsForSelectedRole(int roleId)
+    {
+        var permissionIds = await db.RolePermissions.AsNoTracking()
+            .Where(x => x.RoleId == roleId)
+            .Select(x => x.PermissionId).ToListAsync();
+        return permissionIds;
     }
 }

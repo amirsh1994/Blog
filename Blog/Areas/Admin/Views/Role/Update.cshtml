@@ -1,0 +1,73 @@
+﻿@using Blog.Core.DTOs.Permissions.Query
+@model Blog.Web.Areas.Admin.Models.Roles.UpdateRoleViewModel
+
+@{
+    var allPermission = ViewBag.PermissionList as List<GetPermissionDto>;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">ویرایش نقش</h3>
+            </div>
+            <form asp-controller="Role" asp-action="Update" method="post">
+                <input type="hidden"  asp-for="RoleId"/>
+                <div class="box-body">
+                    <div class="form-group">
+                        <label>نام نقش</label>
+                        <input type="text" class="form-control" asp-for="Title" placeholder="نام نقش">
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+
+                    <div>
+                        <div class="row">
+                            <div class="col-lg-4">
+
+                                <button type="button" class="btn btn-success col-lg-6  add-parent" data-name="PermissionIds">
+                                    انتخاب مجوز دسترسی
+                                </button>
+
+                            </div>
+
+                            <select class="form-control col-lg-8" id="ParentList">
+                                @foreach (var item in allPermission ?? [])
+                                {
+                                    @if (!Model.PermissionIds.Contains(item.PermissionId))
+                                    {
+                                        <option value="@item.PermissionId">@item.PermissionName</option>
+                                    }
+                                }
+                            </select>
+
+                        </div>
+
+                        <div class="ParentListSelected">
+
+                            @if (Model.PermissionIds !=null)
+                            {
+                                @foreach (int permissionId in Model.PermissionIds ?? [])
+                                {
+                                    var permissionName = allPermission?.FirstOrDefault(x => x.PermissionId == permissionId)?.PermissionName;
+                                    <div class="item-Parent">
+                                        <button type="button" class="btn-remove item-btn-remove">×</button>
+                                        <input type="hidden" name="PermissionIds" value="@permissionId"/>
+                                        <span>@permissionName</span>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">ارسال</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section script
+{
+    <partial name="_multiSelectJsPartial" />
+}

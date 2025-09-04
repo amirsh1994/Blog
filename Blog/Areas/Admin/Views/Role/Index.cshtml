@@ -1,5 +1,8 @@
 ﻿@using Blog.Core.Utils
 @model IEnumerable<Blog.Core.DTOs.Roles.Queries.GetRoleDto>
+@{
+    ViewData[ViewDataExtension.Selected] = ViewDataExtension.Roles;
+}
 <section class="content-header">
     <h1>
         صفحه خالی
@@ -46,8 +49,13 @@
                                <td>@item.RoleId</td>
                                <td>@item.RoleName</td>
                                <td>
-                                   <a class="btn btn-info" href="/Admin/Brand/Update/@item.RoleId">ویرایش</a>
-                                   <a class="btn btn-danger" href="/Admin/Brand/Remove/@item.RoleId">حذف</a>
+                                   <a class="btn btn-info" href="/Admin/Role/Update/@item.RoleId">ویرایش</a>
+
+                                   <form asp-controller="Role" asp-action="Remove" method="post" style="display: inline">
+                                       <input type="hidden" name="id" value="@item.RoleId"/>
+                                       <button class="btn btn-danger">حذف</button>
+                                   </form>
+
                                </td>
                            </tr>
                        }

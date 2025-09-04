@@ -7,17 +7,16 @@ using Blog.Core.Services.UserRoleServices.Query;
 using Blog.Core.Utils;
 using Blog.Web.Areas.Admin.Models.Roles;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 
 namespace Blog.Web.Areas.Admin.Controllers;
 
 public class RoleController(
-       IRoleServiceQuery roleServiceQuery
-       ,IRoleServiceCommand roleServiceCommand
-       ,IPermissionServiceQuery permissionServiceQuery
-       ,IUserRoleServiceQuery userRoleServiceQuery
-       ,IUserRoleServiceCommand userRoleServiceCommand) : BaseAdminController
+         IRoleServiceQuery roleServiceQuery
+       , IRoleServiceCommand roleServiceCommand
+       , IPermissionServiceQuery permissionServiceQuery
+       , IUserRoleServiceQuery userRoleServiceQuery
+       , IUserRoleServiceCommand userRoleServiceCommand) : BaseAdminController
 {
     #region Index
 
@@ -55,6 +54,47 @@ public class RoleController(
     }
     #endregion
 
+    #region Remove
+    [HttpPost]
+    public async Task<IActionResult> Remove(int id)
+    {
+        var result = await roleServiceCommand.RemoveRole(id);
+        TempData[TempDataName.ResultTempData] = JsonConvert.SerializeObject(result);
+        return RedirectToAction(nameof(Index));
+    }
+    #endregion
+
+    #region Update
+    [HttpGet]
+    public async Task<IActionResult> Update(int id)
+    {
+        await GetPermissions();
+        var permissionIdsForRole = await permissionServiceQuery.GetPermissionIdsForSelectedRole(id);
+        var getRole = await roleServiceQuery.GetRoleForUpdate(id);
+        UpdateRoleViewModel vm = new UpdateRoleViewModel
+        {
+            RoleId = id,
+            Title = getRole.RoleName,
+            PermissionIds = permissionIdsForRole
+        };
+        return View(vm);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Update(UpdateRoleViewModel vm)
+    {
+        var updateDto = new UpdateRoleDto
+        {
+            RoleId = vm.RoleId,
+            Title = vm.Title,
+            PermissionIds = vm.PermissionIds
+        };
+        var result = await roleServiceCommand.UpdateRole(updateDto);
+        TempData[TempDataName.ResultTempData]= JsonConvert.SerializeObject(result);
+        return RedirectToAction(nameof(Index));
+    }
+    #endregion
+
     #region AddRoleToSelectedUser
 
     [HttpGet]
@@ -76,7 +116,7 @@ public class RoleController(
             RoleIds = addRole.RoleIds
         };
         var result = await roleServiceCommand.AddRoleForSelectedUser(addRoleDto);
-        TempData[TempDataName.ResultTempData]= JsonConvert.SerializeObject(result);
+        TempData[TempDataName.ResultTempData] = JsonConvert.SerializeObject(result);
         return RedirectToAction(nameof(Index));
     }
 

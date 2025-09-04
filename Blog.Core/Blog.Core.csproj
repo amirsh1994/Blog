@@ -12,6 +12,7 @@
     <Folder Include="Services\CategoryServices\Query\" />
     <Folder Include="Services\CommentServices\Command\" />
     <Folder Include="Services\CommentServices\Query\" />
+    <Folder Include="Services\PermissionServices\Command\" />
     <Folder Include="Services\PostServices\Command\" />
     <Folder Include="Services\PostServices\Query\" />
     <Folder Include="DTOs\Comments\" />

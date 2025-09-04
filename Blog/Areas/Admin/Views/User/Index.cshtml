@@ -1,6 +1,8 @@
 ﻿@using Blog.Core.Utils
 @model IEnumerable<Blog.Core.DTOs.Users.Queries.GetUserDto>
-
+@{
+    ViewData[ViewDataExtension.Selected] = ViewDataExtension.Users;
+}
 
 <section class="content-header">
     <h1>
@@ -51,7 +53,12 @@
                                 <td>@item.UserImage</td>
                                 <td>
                                     <a class="btn btn-info" href="/Admin/User/Update/@item.UserId">ویرایش</a>
-                                    <a class="btn btn-danger" href="/Admin/User/Remove/@item.UserId">حذف</a>
+
+                                    <form asp-controller="User" asp-action="Remove" method="post" style="display: inline">
+                                        <input type="hidden" name="id" value="@item.UserId"/>
+                                        <button class="btn btn-danger">حذف</button>
+                                    </form>
+
                                     <a class="btn btn-success" href="/AddRoleToSelectedUser/@item.UserId">افزودن نقش به کاربر</a>
                                 </td>
                             </tr>

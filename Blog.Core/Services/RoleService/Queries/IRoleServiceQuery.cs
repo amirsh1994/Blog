@@ -14,9 +14,11 @@ public interface IRoleServiceQuery
     Task<List<int>> FindRolesForUser(int userId);
 
     Task<List<int>> FindRolesByPermissionId(int permissionId);
+
+    Task<GetRoleDto?> GetRoleForUpdate(int roleId);
 }
 
-public class RoleServiceQuery(BlogContext db) : IRoleServiceQuery
+public class RoleServiceQuery(BlogContext db):IRoleServiceQuery
 {
     public async Task<List<GetRoleDto>> GetRoles()
     {
@@ -49,5 +51,17 @@ public class RoleServiceQuery(BlogContext db) : IRoleServiceQuery
             .Where(x => x.PermissionId == permissionId)
             .Select(x => x.RoleId).ToListAsync();
         return rolIds;
+    }
+
+    public async Task<GetRoleDto?> GetRoleForUpdate(int roleId)
+    {
+        var role = await db.Roles.AsNoTracking()
+            .Where(x => x.Id == roleId)
+            .Select(x => new GetRoleDto
+            {
+                RoleId = x.Id,
+                RoleName = x.Title
+            }).FirstOrDefaultAsync();
+        return role;
     }
 }

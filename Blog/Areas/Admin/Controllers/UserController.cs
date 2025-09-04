@@ -68,11 +68,15 @@ public class UserController(
     }
     #endregion
 
-
     #region Remove
 
-    
-
+    [HttpPost]
+    public async Task<IActionResult>Remove(int id)
+    {
+        var result = await userServiceCommand.RemoveUser(id);
+        TempData[TempDataName.ResultTempData] = JsonConvert.SerializeObject(result);
+        return RedirectToAction(nameof(Index));
+    }
     #endregion
 
 }

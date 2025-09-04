@@ -33,3 +33,33 @@ public static class UserRoleExtensions
 
     }
 }
+
+public static class RolePermissionExtension
+{
+    public static void SyncRolePermission(this Role role,List<int>newPermissionIds,BlogContext db)
+    {
+        var existingPermissionIds = role.RolePermissions.Select(x => x.PermissionId).ToList();
+
+        var permissionsToRemove = existingPermissionIds.Except(newPermissionIds).ToList();
+
+        if (permissionsToRemove.Any())
+        {
+            var removeList = db.RolePermissions.Where(x => permissionsToRemove.Contains(x.PermissionId)).ToList();
+            db.RolePermissions.RemoveRange(removeList);
+        }
+        var permissionsToAdd = newPermissionIds.Except(existingPermissionIds).ToList();
+
+        if (permissionsToAdd.Any())
+        {
+            foreach (int permissionId in permissionsToAdd)
+            {
+                role.RolePermissions.Add(new RolePermission
+                {
+                    CreationDate = DateTime.Now,
+                    RoleId = role.Id,
+                    PermissionId = permissionId,
+                });
+            }
+        }
+    }
+}
